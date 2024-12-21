@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: audio-recognition
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: audio-recognition
+  template:
+    metadata:
+      labels:
+        app: audio-recognition
+    spec:
+      containers:
+      - name: audio-recognition
+        image: wangkaihua/voice_demo:v2
+        ports:
+        - containerPort: 7860

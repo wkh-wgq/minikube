@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx-https.conf: |
+    server {
+      listen 443 ssl;
+      # server_name sws.local;
+      server_name 172.16.100.22;
+
+      client_max_body_size 20m;
+
+      ssl_certificate /etc/nginx/certs/server.crt;
+      ssl_certificate_key /etc/nginx/certs/server.key;
+
+      ssl_session_timeout 5m;
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+      ssl_prefer_server_ciphers on;
+
+      location /ai_power_api {
+          proxy_pass http://ai-power:3000;
+
+          # proxy_set_header Origin "";
+      }
+
+      # 转发action_cable的webSocket请求
+      location /cable {
+          proxy_pass http://ai-power:3000;
+
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+
+      }
+
+      location /file_center_api {
+          proxy_pass http://file-center:4000;
+
+          rewrite /file_center_api/(.*) /$1 break;
+      }
+
+      location /max_kb_api {
+          proxy_pass http://maxkb:8080;
+
+          rewrite /max_kb_api/(.*) /$1 break;
+      }
+
+      location /picture_recognition_api {
+          proxy_pass http://host.docker.internal:8000;
+
+          rewrite /picture_recognition_api/(.*) /$1 break;
+      }
+
+      location /audio_recognition_api {
+          proxy_pass http://audio-recognition:7860;
+
+          rewrite /audio_recognition_api/(.*) /$1 break;
+      }
+    }

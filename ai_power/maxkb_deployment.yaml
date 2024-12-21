@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maxkb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maxkb
+  template:
+    metadata:
+      labels:
+        app: maxkb
+    spec:
+      containers:
+      - name: maxkb
+        image: cr2.fit2cloud.com/1panel/maxkb
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: maxkb-data
+        - mountPath: /opt/maxkb/app/sandbox/python-packages
+          name: maxkb-python-data
+      volumes:
+      - name: maxkb-data
+        persistentVolumeClaim:
+          claimName: maxkb-pvc
+      - name: maxkb-python-data
+        persistentVolumeClaim:
+          claimName: maxkb-python-pvc

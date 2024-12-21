@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ai-power-config
+data:
+  # 文件服务器地址
+  FILE_CENTER_SERVICE_HOST: "https://sws.local/file_center_api"
+  # 图片识别服务地址
+  PICTURE_RECOGNITION_SERVICE_HOST: "https://sws.local/picture_recognition_api"
+  # 语音识别服务地址
+  AUDIO_RECOGNITION_SERVICE_HOST: "https://sws.local/audio_recognition_api"
+  # maxkb服务地址
+  MAXKB_API_HOST: "https://sws.local/max_kb_api"
+  # action_cable允许的请求来源
+  ACTION_CABLE_ALLOWED_REQUEST_ORIGINS: "https://sws.local"
+  # solid_queue是否作为puma的插件运行
+  SOLID_QUEUE_IN_PUMA: "true"

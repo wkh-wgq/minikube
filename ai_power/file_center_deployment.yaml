@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-center
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-center
+  template:
+    metadata:
+      labels:
+        app: file-center
+    spec:
+      containers:
+      - name: file-center
+        image: wangkaihua/file_center:rails8-v1
+        ports:
+        - containerPort: 4000
+        env:
+        - name: RAILS_MASTER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: file-center-secret
+              key: RAILS_MASTER_KEY
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        - name: DB_HOST
+          value: "postgres"

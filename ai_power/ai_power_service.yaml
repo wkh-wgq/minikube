@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-power
+spec:
+  type: LoadBalancer
+  selector:
+    app: ai-power
+  ports:
+  - port: 3000
+    targetPort: 3000

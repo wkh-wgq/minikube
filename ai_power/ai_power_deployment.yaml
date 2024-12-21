@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-power
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-power
+  template:
+    metadata:
+      labels:
+        app: ai-power
+    spec:
+      containers:
+      - name: ai-power
+        image: wangkaihua/ai_power_demo:rails8-v2
+        ports:
+        - containerPort: 3000
+        env:
+        - name: RAILS_MASTER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ai-power-secret
+              key: RAILS_MASTER_KEY
+        - name: MAXKB_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ai-power-secret
+              key: MAXKB_API_KEY
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        - name: DB_HOST
+          value: "postgres"
+        envFrom:
+        - configMapRef:
+            name: ai-power-config
+
