@@ -1,4 +1,4 @@
-# 一键部署 Minikube 环境和项目
+# 通过minikube快速部署ai_power项目
 ## 1. 安装 Docker, Minikube 和 kubectl
   minikube的安装可以参考[官网](https://minikube.kubernetes.ac.cn/docs/start/)
 ## 2. 给服务器上传 CA 证书
