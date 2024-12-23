@@ -22,12 +22,12 @@ spec:
         - name: nginx-config
           mountPath: /etc/nginx/conf.d/nginx-https.conf
           subPath: ./nginx-https.conf
-        - name: nginx-certs
+        - name: ssl-secret
           mountPath: /etc/nginx/certs
       volumes:
       - name: nginx-config
         configMap:
           name: nginx-config
-      - name: nginx-certs
+      - name: ssl-secret
         secret:
-          secretName: nginx-secrets
+          secretName: ssl-secret

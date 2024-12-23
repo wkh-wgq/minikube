@@ -9,4 +9,4 @@ spec:
   ports:
     - protocol: TCP
       port: 7860
-      targetPort: 7860
+      targetPort: 7860  
