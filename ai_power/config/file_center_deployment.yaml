@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: file-center
-        image: wangkaihua/file_center:rails8-v1
+        image: wangkaihua/file_center:rails8-v2
         ports:
         - containerPort: 4000
         env:
