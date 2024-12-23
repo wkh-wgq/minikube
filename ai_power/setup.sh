@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 加载环境变量
+source ~/.bashrc
+
 # 创建namespace
 kubectl create namespace dev
 # 设置当前上下文的namespace为dev
