@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# 加载环境变量
-source ~/.bashrc
+# 定义别名
+alias kubectl="minikube kubectl --"
+shopt -s expand_aliases
 
 # 创建namespace
 kubectl create namespace dev
