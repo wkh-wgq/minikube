@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ai-power
-        image: wangkaihua/ai_power_demo:rails8-v2
+        image: wangkaihua/ai_power_demo:rails8-v3
         ports:
         - containerPort: 3000
         env:
