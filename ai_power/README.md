@@ -1,6 +1,6 @@
 # 通过minikube快速部署ai_power项目
-## 1.安装 Docker, Minikube 和 kubectl
-  minikube的安装可以参考[官网](https://minikube.kubernetes.ac.cn/docs/start/)，其中也有kubectl安装的教程
+## 1.安装 Docker, Minikube
+  minikube的安装可以参考[官网](https://minikube.kubernetes.ac.cn/docs/start/)
 ## 2.给服务器上传 CA 证书
 将以下 CA 证书文件上传到服务器：
 - `server.crt`（证书文件）
