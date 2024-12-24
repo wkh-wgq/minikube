@@ -4,11 +4,6 @@
 alias kubectl="minikube kubectl --"
 shopt -s expand_aliases
 
-# 创建namespace
-kubectl create namespace dev
-# 设置当前上下文的namespace为dev
-kubectl config set-context --current --namespace=dev
-
 # 创建postgre的密码密钥
 kubectl create secret generic postgres-secret \
   --from-literal=POSTGRES_USER=$POSTGRES_USER \
@@ -31,10 +26,6 @@ cd config
 kubectl apply -f postgres_pvc.yaml \
   -f postgres_deployment.yaml \
   -f postgres_service.yaml \
-  -f maxkb_pvc.yaml \
-  -f maxkb_python_pvc.yaml \
-  -f maxkb_deployment.yaml \
-  -f maxkb_service.yaml \
   -f file_center_deployment.yaml \
   -f file_center_service.yaml \
   -f audio_recognition_deployment.yaml \
