@@ -17,3 +17,10 @@ spec:
         image: wangkaihua/voice_demo:v3
         ports:
         - containerPort: 7860
+        volumeMounts:
+        - mountPath: /root/.cache/modelscope/hub/iic/SenseVoiceSmall
+          name: audio-recognition-data
+      volumes:
+      - name: audio-recognition-data
+        persistentVolumeClaim:
+          claimName: audio-recognition-pvc

@@ -3,9 +3,7 @@ kind: Service
 metadata:
   name: file-center
 spec:
-  type: LoadBalancer
   selector:
     app: file-center
   ports:
   - port: 4000
-    targetPort: 4000

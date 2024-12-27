@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+  - host: sws.local
+    http:
+      paths:
+      - path: /ai_power_api
+        pathType: Prefix
+        backend:
+          service:
+            name: ai-power
+            port:
+              number: 3000
+      - path: /cable
+        pathType: Prefix
+        backend:
+          service:
+            name: ai-power
+            port:
+              number: 3000
+      - path: /file_center_api
+        pathType: Prefix
+        backend:
+          service:
+            name: file-center
+            port:
+              number: 4000
+      - path: /max_kb_api
+        pathType: Prefix
+        backend:
+          service:
+            name: maxkb
+            port:
+              number: 8080
+      - path: /audio_recognition_api
+        pathType: Prefix
+        backend:
+          service:
+            name: audio-recognition
+            port:
+              number: 7860
+      
